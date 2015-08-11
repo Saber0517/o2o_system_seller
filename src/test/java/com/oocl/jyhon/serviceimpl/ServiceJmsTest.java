@@ -24,8 +24,9 @@ public class ServiceJmsTest {
         userEntity.setLicense("QQ20150808-2@2x.png");
         userEntity.setIdCard(UUID.randomUUID().toString().substring(20));
         UserEntityService userEntityService= new UserEntityServiceImpl();
-        //userEntityService.addEntity(userEntity);
+        userEntityService.addEntity(userEntity);
     }
+
     @Test
     public void testAddFood(){
         FoodEntity foodEntity = new FoodEntity();

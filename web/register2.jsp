@@ -73,7 +73,6 @@
         var passwordConfirm = document.getElementById("pwsconfirm").value;
         var telphone = document.getElementById("tel").value;
         var idCard = document.getElementById("idCard").value;
-
         if (verifyName(username) && verifyPsw(password) && verifyPswConFirm(password, passwordConfirm) && verifyTel(telphone) && verifyIdCard(idCard)) {
             return true;
         } else {

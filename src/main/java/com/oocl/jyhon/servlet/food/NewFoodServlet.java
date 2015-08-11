@@ -31,7 +31,6 @@ public class NewFoodServlet extends HttpServlet {
         String pathTemp = formDataUtil.InitFileFolder(this.getServletContext());
         List<FileItem> items = formDataUtil.getFileItems(request, pathTemp);
 
-
         FoodEntity foodEntity = getFoodEntity(items);
         foodEntity.setStatusID(3);
         //??service
@@ -56,6 +55,10 @@ public class NewFoodServlet extends HttpServlet {
 
     private FoodEntity getFoodEntity(List<FileItem> items) throws UnsupportedEncodingException {
         FoodEntity foodEntity = new FoodEntity();
+        if (null == items || items.size() == 0) {
+            return new FoodEntity();
+        }
+
         for (FileItem item : items) {
             if (item.isFormField()) {
                 String fileName = item.getFieldName();
@@ -69,15 +72,18 @@ public class NewFoodServlet extends HttpServlet {
                 System.out.print(item.getFieldName() + ":");
                 System.out.println(item.getString());
             } else {
-                String pic = item.getFieldName();
-                System.out.println("UploadFileName" + item.getName());
-                foodEntity.setPictureURL(item.getName());
-                UploadFileService uploadFileService = new UploadFileServiceImpl();
-                try {
-                    uploadFileService.insert(item.getInputStream(),item.getName());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (item.getFieldName().equals("picture")) {
+                    String pic = item.getFieldName();
+                    System.out.println("UploadFileName" + item.getName());
+                    foodEntity.setPictureURL(item.getName());
+                    UploadFileService uploadFileService = new UploadFileServiceImpl();
+                    try {
+                        uploadFileService.insert(item.getInputStream(), item.getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
         }
         return foodEntity;
