@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -63,8 +62,13 @@
 
 <script type="text/javascript">
     var registerform = document.getElementById("registerform");
+    var usernameElement = document.getElementById("username");
+    usernameElement.onblur = function () {
+        var username = usernameElement.value;
+        verifyName(username);
+    }
     registerform.onsubmit = function () {
-        var username = document.getElementById("username").value;
+        var username = usernameElement.value;
         var password = document.getElementById("psw").value;
         var passwordConfirm = document.getElementById("pwsconfirm").value;
         var telphone = document.getElementById("tel").value;
@@ -82,7 +86,7 @@
         var idCardRegex = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
         var idVerifyMessage = document.getElementById("idCardVerify");
         if (idCardRegex.test(idCard)) {
-            //salert(idCard + " pass...")
+            idVerifyMessage.innerHTML = "";
             return true;
         } else {
             idVerifyMessage.innerHTML = "please confirm your idCard number";
@@ -96,7 +100,7 @@
             document.getElementById("telVerify").innerHTML = "please confirm your password";
             return false;
         } else {
-
+            document.getElementById("telVerify").innerHTML = "";
             return true;
         }
 
@@ -119,7 +123,7 @@
             document.getElementById("pswconfirmVerify").innerHTML = "please confirm your password";
             return false;
         } else {
-
+            document.getElementById("pswconfirmVerify").innerHTML = "";
             return true;
         }
 
@@ -129,6 +133,7 @@
             document.getElementById("pswVerify").innerHTML = "passwrod must longer than 6 ";
             return false;
         } else {
+            document.getElementById("pswVerify").innerHTML = "";
             return true;
         }
     }
@@ -138,10 +143,10 @@
             document.getElementById("nameVerify").innerHTML = "length of username must between 4 to 8 ";
             return false;
         } else {
+            document.getElementById("nameVerify").innerHTML = "";
             return true;
         }
     }
 </script>
 </body>
-
 </html>
