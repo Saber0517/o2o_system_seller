@@ -3,7 +3,6 @@ package com.oocl.jyhon.serviceimpl;
 import com.oocl.jyhon.entiy.FoodEntity;
 import com.oocl.jyhon.entiy.UserEntity;
 import com.oocl.jyhon.service.FoodEntityService;
-
 import com.oocl.jyhon.service.UserEntityService;
 import org.junit.Test;
 
@@ -24,7 +23,7 @@ public class ServiceJmsTest {
         userEntity.setLicense("QQ20150808-2@2x.png");
         userEntity.setIdCard(UUID.randomUUID().toString().substring(20));
         UserEntityService userEntityService= new UserEntityServiceImpl();
-        userEntityService.addEntity(userEntity);
+        //userEntityService.addEntity(userEntity);
     }
 
     @Test

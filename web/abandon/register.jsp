@@ -47,7 +47,7 @@
                     <button type="submit" class="btn btn-block btn-success">Register</button>
                     <br />
                     <div class="text-right">
-                        <a href="login.jsp" class="btn btn-link">Canel</a>
+                        <a href="../login.jsp" class="btn btn-link">Canel</a>
                     </div>
                 </form>
             </div>

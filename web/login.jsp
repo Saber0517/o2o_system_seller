@@ -27,7 +27,7 @@
                     <button type="submit" class="btn btn-block btn-primary">Login</button>
                     <br />
                     <div class="text-right">
-                        <a href="register2.jsp" class="btn btn-link">Register!</a>
+                        <a href="register3.jsp" class="btn btn-link">Register!</a>
                     </div>
                 </form>
             </div>
