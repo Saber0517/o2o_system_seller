@@ -8,129 +8,141 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript">
         $(function () {
-            function verifySign() {
+            function VerifySign() {
                 // 定义私有属性
                 //存储信息的map
-                var errorMessage = new Object();
+                this.errorMessage = new Object();
                 //标志位
-                var flag = true;
+                this.flag = true;
                 // 定义私有方法
                 //验证
-                function verify() {
-                    console.log("verify...");
-                    clear();
-                    console.log($("input[name=name]").val());
-                    if (verifyName() & verifyIdCard() & verifyTel() & verifyPswConFirm() & verifyPsw() & verifyName()) {// && verifyPsw() && verifyPswConFirm() && verifyTel() && verifyIdCard()) {
-                        return true;
-                    } else {
-                        showMessage();
-                        return false;
-                    }
-                }
-
-                //清除上次的验证结果
-                function clear() {
-                    console.log("clear...");
-                    jQuery.each(errorMessage, function (n, value) {
-                        $("#" + n).text("");
-                        console.log(n + ' ' + value);
-                        //alert(n + ' ' + value);
-                    });
-                    errorMessage = new Object();
-
-                }
-
                 // 特权函数声明，用于该对象其他公有方法能通过该特权方法访问到私有成员
-                this.startVerify = function () {
-                    console.log("startVerify...");
-                    flag = true;
-                    verify();
+                /*  this.startVerify = function () {
+                 console.log("startVerify...");
+                 flag = true;
+                 //VerifySign.prototype.verify();
+                 this.verify();
+                 return false;
+                 };*/
+
+            }
+
+            VerifySign.prototype.startVerify = function () {
+                console.log("startVerify...");
+                flag = true;
+                //VerifySign.prototype.verify();
+                this.verify();
+                return false;
+            };
+
+
+            VerifySign.prototype.verify = function () {
+                console.log("verify...");
+                this.clear();
+                console.log($("input[name=name]").val());
+                if (this.verifyName() & this.verifyIdCard() & this.verifyTel() & this.verifyPswConFirm() & this.verifyPsw() & this.verifyName()) {// && verifyPsw() && verifyPswConFirm() && verifyTel() && verifyIdCard()) {
+                    return true;
+                } else {
+                    this.showMessage();
                     return false;
-                };
-
-                //展示错误信息
-                function showMessage() {
-                    console.log("showMessage....");
-                    jQuery.each(errorMessage, function (n, value) {
-                        $("#" + n).text(value);
-                        console.log(n + ' ' + value);
-                        //alert(n + ' ' + value);
-                    });
-
                 }
+            }
 
-                function verifyIdCard() {
-                    var idCardRegex = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-                    var idCard = $("input[name=idCard]").val();
-                    if (idCardRegex.test(idCard)) {
-                        return true;
-                    } else {
-                        errorMessage["idCardVerify"] = "please confirm your idCard number";
-                        return false;
-                    }
+            //清除上次的验证结果
+            VerifySign.prototype.clear = function () {
+                console.log("clear...");
+                jQuery.each(this.errorMessage, function (n, value) {
+                    $("#" + n).text("");
+                    console.log(n + ' ' + value);
+                    //alert(n + ' ' + value);
+                });
+                this.errorMessage = new Object();
+            }
 
-                }
 
-                function verifyTel() {
-                    var telphone = $("input[name=tel]").val();
-                    if (!checkTel(telphone)) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+            //展示错误信息
+            VerifySign.prototype.showMessage = function () {
+                console.log("showMessage....");
+                jQuery.each(this.errorMessage, function (n, value) {
+                    $("#" + n).text(value);
+                    console.log(n + ' ' + value);
+                    //alert(n + ' ' + value);
+                });
 
-                }
+            }
 
-                function checkTel(telphone) {
-                    var isPhone = /^([0-9]{3,4}-)?[0-9]{7,8}$/;
-                    var isMob = /(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/;
-
-                    if (isPhone.test(telphone) || isMob.test(telphone)) {
-                        return true;
-                    }
-                    else {
-                        errorMessage["telVerify"] = "please confirm your tel number";
-                        return false;
-                    }
-                }
-
-                function verifyPswConFirm() {
-                    var psw = $("input[name=psw]").val();
-                    var pswConfirm = $("input[name=pswconfirm]").val();
-                    if (psw != pswConfirm) {
-                        errorMessage["pswconfirmVerify"] = "please confirm your password";
-                        return false;
-                    } else {
-                        return true;
-                    }
-
-                }
-
-                function verifyPsw() {
-                    var psw = $("input[name=psw]").val();
-                    if (psw.length < 6) {
-                        errorMessage["pswVerify"] = "passwrod must longer than 6";
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-
-                function verifyName() {
-                    var username = $("input[name=name]").val();
-                    if (username.length < 4 || username.length > 8) {
-                        errorMessage["nameVerify"] = "length of username must between 4 to 8 ";
-                        return false;
-                    } else {
-                        return true;
-                    }
+            VerifySign.prototype.verifyIdCard = function () {
+                var idCardRegex = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+                var idCard = $("input[name=idCard]").val();
+                if (idCardRegex.test(idCard)) {
+                    return true;
+                } else {
+                    this.errorMessage["idCardVerify"] = "please confirm your idCard number";
+                    return false;
                 }
 
             }
-            var verify = new verifySign();
+
+            VerifySign.prototype.verifyTel = function () {
+                var telphone = $("input[name=tel]").val();
+                if (!this.checkTel(telphone)) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+
+            VerifySign.prototype.checkTel = function (telphone) {
+                var isPhone = /^([0-9]{3,4}-)?[0-9]{7,8}$/;
+                var isMob = /(^(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/;
+
+                if (isPhone.test(telphone) || isMob.test(telphone)) {
+                    return true;
+                }
+                else {
+                    this.errorMessage["telVerify"] = "please confirm your tel number";
+                    return false;
+                }
+            }
+
+            VerifySign.prototype.verifyPswConFirm = function () {
+                var psw = $("input[name=psw]").val();
+                var pswConfirm = $("input[name=pswconfirm]").val();
+                if (psw != pswConfirm) {
+                    this.errorMessage["pswconfirmVerify"] = "please confirm your password";
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+
+            VerifySign.prototype.verifyPsw = function () {
+                var psw = $("input[name=psw]").val();
+                if (psw.length < 6) {
+                    this.errorMessage["pswVerify"] = "passwrod must longer than 6";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            VerifySign.prototype.verifyName = function () {
+                var username = $("input[name=name]").val();
+                if (username.length < 4 || username.length > 8) {
+                    this.errorMessage["nameVerify"] = "length of username must between 4 to 8 ";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            var verify = new VerifySign();
             jQuery("#registerform").submit(function () {
                 console.log("submit");
                 verify.startVerify();
+
 
                 //for test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return false;

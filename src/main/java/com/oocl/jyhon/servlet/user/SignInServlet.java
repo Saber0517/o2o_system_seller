@@ -4,7 +4,7 @@ package com.oocl.jyhon.servlet.user;
 import com.oocl.jyhon.entiy.UserEntity;
 import com.oocl.jyhon.service.UserEntityService;
 import com.oocl.jyhon.serviceimpl.UserEntityServiceImpl;
-import com.oocl.jyhon.util.VerifyUtil;
+import com.oocl.jyhon.util.VerifyUserUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -39,7 +39,7 @@ public class SignInServlet extends HttpServlet {
         UserEntity userEntity = getUserEntity(items);
 
         //验证插入信息
-        VerifyUtil verifyUtil = new VerifyUtil();
+        VerifyUserUtil verifyUtil = new VerifyUserUtil();
         if (verifySignInData(request, response, userEntity, verifyUtil)) return;
 
         //插入数据
@@ -57,8 +57,8 @@ public class SignInServlet extends HttpServlet {
 
     }
 
-    private boolean verifySignInData(HttpServletRequest request, HttpServletResponse response, UserEntity userEntity, VerifyUtil verifyUtil) throws ServletException, IOException {
-        Map<String, String> verifyParameter = verifyUtil.verifyParameter(userEntity);
+    private boolean verifySignInData(HttpServletRequest request, HttpServletResponse response, UserEntity userEntity, VerifyUserUtil verifyUserUtil) throws ServletException, IOException {
+        Map<String, String> verifyParameter = verifyUserUtil.verifyParameter(userEntity);
         if (!verifyParameter.isEmpty()) {
             //错误提示
             request.setAttribute("verifyParameter", verifyParameter);

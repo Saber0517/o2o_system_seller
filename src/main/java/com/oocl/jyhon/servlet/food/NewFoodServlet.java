@@ -29,7 +29,7 @@ public class NewFoodServlet extends HttpServlet {
         //????
         FormDataUtil formDataUtil = new FormDataUtil();
         String pathTemp = formDataUtil.InitFileFolder(this.getServletContext());
-        List<FileItem> items = formDataUtil.getFileItems(request, pathTemp);
+         List<FileItem> items = formDataUtil.getFileItems(request, pathTemp);
 
         FoodEntity foodEntity = getFoodEntity(items);
         foodEntity.setStatusID(3);
