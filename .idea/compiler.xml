@@ -22,11 +22,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="o2o_system_core" />
+        <module name="week4_weekly_o2o_system_seller" />
+        <module name="week4_weekly_o2o_system_seller (2)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
-      <module name="o2o_system_core" target="1.7" />
-      <module name="week4_weekly_o2o_system_seller" target="1.7" />
+      <module name="o2o_system_core" target="1.5" />
+      <module name="week4_weekly_o2o_system_seller" target="1.5" />
+      <module name="week4_weekly_o2o_system_seller (1)" target="1.5" />
+      <module name="week4_weekly_o2o_system_seller (2)" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

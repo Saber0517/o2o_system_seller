@@ -133,12 +133,15 @@
             }
 
             var verify = new VerifySign();
+            //verify
             jQuery("#registerform").submit(function () {
                 console.log("submit");
-                verify.startVerify();
-                //for test
+                if (verify.startVerify()) {
+                    $(this).submit();
+                }
                 return false;
             });
+
             console.log("loding...");
         });
 
