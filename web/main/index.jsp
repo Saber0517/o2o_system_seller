@@ -5,7 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>SMS - home</title>
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <!-- ? Bootstrap ?? CSS ?? -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- ???Bootstrap???????????? -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- ??? Bootstrap ?? JavaScript ?? -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/js/databuffer.js"></script>
     <style>
         nav.navbar i {
             width: 30px;
@@ -32,7 +40,8 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <c:forEach items="${foodTypeEntityList}" var="foodTypeItem">
-                            <li><a href="../FoodSerlvet?typeID=${foodTypeItem.foodTypeID}"><i class="glyphicon glyphicon-cutlery"></i>${foodTypeItem.foodTypeName}
+                            <li><a href="../FoodSerlvet?typeID=${foodTypeItem.foodTypeID}"><i
+                                    class="glyphicon glyphicon-cutlery"></i>${foodTypeItem.foodTypeName}
                             </a></li>
                             <!--<li><a href="mainCourse.jsp"><i class="glyphicon glyphicon-cutlery"></i>Main course</a></li>-->
                         </c:forEach>

@@ -32,7 +32,7 @@ public class FoodSerlvet extends HttpServlet {
         foodEntityList = getFoodEntities(typeID);
         //Set current TypeName
         setCurrentTypeName(request, typeID);
-        //result
+        //result set into seesion
         SetResultToSession(request, foodEntityList);
         //foward
         if (null != typeID) {

@@ -1,5 +1,7 @@
 package com.oocl.jyhon.servlet.user;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oocl.jyhon.dao.EntityDao;
 import com.oocl.jyhon.daoimple.UserEntityDaoImple;
 import com.oocl.jyhon.entiy.UserEntity;
@@ -33,6 +35,13 @@ public class LoginServlet extends HttpServlet {
         UserEntity currentUser = userEntityService.verify(userEntity);
 
         System.out.println(currentUser);
+
+
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        //设置json格式
+        response.setContentType("application/json");
+
 
         if (currentUser != null) {
             currentUser.setPassword("");

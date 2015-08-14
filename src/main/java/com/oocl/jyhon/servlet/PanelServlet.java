@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * ???????servlet
  * Created by ZHANGJA4 on 8/7/2015.
  */
 @WebServlet(name = "PanelServlet", urlPatterns = {"/PanelServlet", "/index.jsp"})
@@ -25,8 +26,6 @@ public class PanelServlet extends HttpServlet {
         //foodType
         FoodTypeEntityService foodTypeEntityService = new FoodTypeEntityServiceImpl();
         List<FoodTypeEntity> foodTypeEntityList = foodTypeEntityService.findAll();
-
-
         request.getSession().setAttribute("foodTypeEntityList", foodTypeEntityList);
 
         //status
