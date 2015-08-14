@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="week4_weekly_o2o_system_seller:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="week4_weekly_o2o_system_seller:war exploded">
     <output-path>$PROJECT_DIR$/classes/artifacts/week4_weekly_o2o_system_seller_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
@@ -22,6 +22,7 @@
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.3" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.3" />
+          <element id="library" level="application" name="jstl-1.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="week4_weekly_o2o_system_seller/web/Web" />
