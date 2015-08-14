@@ -5,7 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="week4_weekly_o2o_system_seller" />
-          <element id="module-output" name="o2o_system_core" />
+          <element id="module-output" name="o2o_system_core (1)" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl-1.2" />
