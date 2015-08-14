@@ -9,30 +9,13 @@
     <script type="text/javascript">
         $(function () {
             function VerifySign() {
-                // 定义私有属性
                 //存储信息的map
                 this.errorMessage = new Object();
-                //标志位
-                this.flag = true;
-                // 定义私有方法
-                //验证
-                // 特权函数声明，用于该对象其他公有方法能通过该特权方法访问到私有成员
-                /*  this.startVerify = function () {
-                 console.log("startVerify...");
-                 flag = true;
-                 //VerifySign.prototype.verify();
-                 this.verify();
-                 return false;
-                 };*/
-
             }
 
             VerifySign.prototype.startVerify = function () {
                 console.log("startVerify...");
-                flag = true;
-                //VerifySign.prototype.verify();
-                this.verify();
-                return false;
+                return this.verify();
             };
 
 
@@ -40,12 +23,20 @@
                 console.log("verify...");
                 this.clear();
                 console.log($("input[name=name]").val());
-                if (this.verifyName() & this.verifyIdCard() & this.verifyTel() & this.verifyPswConFirm() & this.verifyPsw() & this.verifyName()) {// && verifyPsw() && verifyPswConFirm() && verifyTel() && verifyIdCard()) {
-                    return true;
-                } else {
-                    this.showMessage();
+                this.verifyName();
+                this.verifyIdCard();
+                this.verifyTel();
+                this.verifyPswConFirm();
+                this.verifyPsw();
+                this.verifyName();
+                var count = this.showMessage();
+                console.log("error count" + count);
+                if (count > 0) {
                     return false;
+                } else {
+                    return true;
                 }
+
             }
 
             //清除上次的验证结果
@@ -62,12 +53,15 @@
 
             //展示错误信息
             VerifySign.prototype.showMessage = function () {
+                var count = 0;
                 console.log("showMessage....");
                 jQuery.each(this.errorMessage, function (n, value) {
                     $("#" + n).text(value);
                     console.log(n + ' ' + value);
+                    count++;
                     //alert(n + ' ' + value);
                 });
+                return count;
 
             }
 
@@ -142,9 +136,7 @@
             jQuery("#registerform").submit(function () {
                 console.log("submit");
                 verify.startVerify();
-
-
-                //for test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //for test
                 return false;
             });
             console.log("loding...");
