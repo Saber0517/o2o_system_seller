@@ -48,7 +48,7 @@
                        role="button">${currentUser.userName} <span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="../login.jsp"><i class="glyphicon glyphicon-log-out"></i>&emsp;Logout</a></li>
+                        <li><a href="../login.html"><i class="glyphicon glyphicon-log-out"></i>&emsp;Logout</a></li>
                     </ul>
                 </li>
             </ul>

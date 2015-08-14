@@ -1,6 +1,8 @@
 package com.oocl.jyhon.servlet.user;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oocl.jyhon.entiy.UserEntity;
 import com.oocl.jyhon.service.UserEntityService;
 import com.oocl.jyhon.serviceimpl.UserEntityServiceImpl;
@@ -28,7 +30,7 @@ public class SignInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //请求参数接收
-        request.setCharacterEncoding("UTF-8");
+
         //将来由IOC完成
         UserEntityService userEntityService = new UserEntityServiceImpl();
 
@@ -44,15 +46,25 @@ public class SignInServlet extends HttpServlet {
 
         //插入数据
         Integer dbResult = userEntityService.addEntity(userEntity);
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        //设置json格式
+        response.setContentType("application/json");
         //错误提示
+
         if (dbResult <= 0) {
-            request.setAttribute("ErrorMessage", "DataBase Insert fail!");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-            return;
+            jsonObject.addProperty("ResultMessage", "DataBase Insert fail!");
+            jsonObject.addProperty("status", "fail");
+            String json = gson.toJson(jsonObject);
+            response.getOutputStream().write(json.getBytes());
         }
         //成功
-        request.setAttribute("ReminderMessage", "Register Success please login");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        jsonObject.addProperty("ResultMessage", "Register Success please login!");
+        jsonObject.addProperty("status", "success");
+        String json = gson.toJson(jsonObject);
+        response.getOutputStream().write(json.getBytes());
+//        request.setAttribute("ReminderMessage", "Register Success please login");
+//        request.getRequestDispatcher("login.html").forward(request, response);
 
 
     }

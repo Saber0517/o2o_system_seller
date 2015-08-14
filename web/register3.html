@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <script src="js/jquery-1.11.3.min.js"></script>
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.form.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
             function VerifySign() {
@@ -134,14 +142,34 @@
 
             var verify = new VerifySign();
             //verify
-            jQuery("#registerform").submit(function () {
+//            jQuery("#registerform").submit(function () {
+//
+//                console.log("submit");
+//                if (verify.startVerify()) {
+//                    return true;
+//                }
+//                return false;
+//            });
+            jQuery("#registerform").on("submit", function () {
+
                 console.log("submit");
                 if (verify.startVerify()) {
-                    $(this).submit();
+                    return true;
                 }
                 return false;
             });
 
+            jQuery("#registerform").ajaxForm(function (data) {
+                var message = data.ResultMessage;
+                console.log(message);
+                $('#result-body').empty();
+                if (data.status == "success") {
+                    $('#result-body').prepend('<div class="bg-success">' + message + '</div>');
+                } else {
+                    $('#result-body').prepend('<div class="bg-danger">' + message + '</div>');
+                }
+                $('#result-model').modal({backdrop: false});
+            });
             console.log("loding...");
         });
 
@@ -150,6 +178,27 @@
 </head>
 
 <body>
+<div id="result-model" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div id="result-content" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div id="result-body" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button onclick="location='login.html'" type="button" class="btn btn-success">去登陆</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">留在此页</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -157,17 +206,17 @@
             <form id="registerform" action="SignInServlet" method="post" class="center-block well"
                   style="max-width: 500px; margin-top: 50px" enctype="multipart/form-data">
                 <h1 class="text-center">Seller Register</h1>
-                <span class="text-danger">${ErrorMessage}</span>
+                <span class="text-danger"></span>
 
                 <div class="form-group">
                     <label>Name</label>
                     <input id="username" type="text" name="name" class="form-control" required value="12"/>
-                    <span id="nameVerify" class="text-danger">${verifyParameter.name}</span>
+                    <span id="nameVerify" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
                     <input id="psw" type="password" name="psw" class="form-control" required value="123456789"/>
-                    <span id="pswVerify" class="text-danger">${verifyParameter.pwd}</span>
+                    <span id="pswVerify" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label>Confirm Password</label>
@@ -178,7 +227,7 @@
                 <div class="form-group">
                     <label>Tel</label>
                     <input id="tel" type="tel" name="tel" class="form-control" required value="2239823"/>
-                    <span id="telVerify" class="text-danger">${verifyParameter.tel}</span>
+                    <span id="telVerify" class="text-danger" ?></span>
                 </div>
                 <div class="form-group">
                     <label>Id Card</label>
@@ -186,17 +235,20 @@
                            value="440402199205179137"/>
                     <span id="idCardVerify" class="text-danger"></span>
                 </div>
-                <%--<div class="form-group">--%>
-                <%--<label>License</label>--%>
-                <%--<input type="file" name="license" class="form-control" required/>--%>
-                <%--</div>--%>
+
+                <!--<div class="form-group">-->
+                <!--<label>License</label>-->
+                <!--<input type="file" name="license" class="form-control" required/>-->
+                <!-- -->
+                <!--</div>-->
+
                 <br/>
-                <span class="text-danger">${ErrorMessage}</span>
+                <span class="text-danger"></span>
                 <button type="submit" class="btn btn-block btn-success">Register</button>
                 <br/>
 
                 <div class="text-right">
-                    <a href="login.jsp" class="btn btn-link">Canel</a>
+                    <a href="login.html" class="btn btn-link">Canel</a>
                 </div>
             </form>
         </div>

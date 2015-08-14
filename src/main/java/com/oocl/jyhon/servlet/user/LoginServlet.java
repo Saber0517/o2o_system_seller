@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("PanelServlet").forward(request, response);
         } else {
             request.getSession().setAttribute("ErrorMessage", "name or password wrong!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("login.html").forward(request, response);
         }
 
     }
