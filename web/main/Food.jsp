@@ -119,7 +119,8 @@
                         <td>${foodTypeItem.foodID}</td>
                         <td>${foodTypeItem.foodName}</td>
                         <td>${foodTypeItem.price}</td>
-                        <td>${foodTypeItem.pictureURL}</td>
+                        <td><div class=""><img src="../File?filename=${foodTypeItem.pictureURL}" style="width:60%" class="img-rounded img-responsive"></div></td>
+                        <%--<td>${foodTypeItem.pictureURL}</td>--%>
                         <td>
                             <c:forEach items="${statusEntityList}" var="statusItem">
                                 <c:choose>
