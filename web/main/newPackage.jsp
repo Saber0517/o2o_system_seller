@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">SMS</a>
+            <a class="navbar-brand" href="index.html">SMS</a>
         </div>
         <div class="collapse navbar-collapse" id="main-nav">
             <ul class="nav navbar-nav">
@@ -60,7 +60,7 @@
     <div class="row">
         <div class="col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="index.jsp">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="package.jsp">Package</a></li>
                 <li class="active">New package</li>
             </ol>
