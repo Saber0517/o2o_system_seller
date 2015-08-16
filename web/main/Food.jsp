@@ -28,13 +28,13 @@
 
 
     <script type="text/javascript">
-        $(function(){
-            $(".dropdown.active").toggleClass("open",true);
-            $(".dropdown").on("click",function(){
-                $(".dropdown").toggleClass("open",true);
+        $(function () {
+            $(".dropdown.active").toggleClass("open", true);
+            $(".dropdown").on("click", function () {
+                $(".dropdown").toggleClass("open", true);
             });
-            $(".dropdown.active").on("hide.bs.dropdown",function(e) {
-                $(".dropdown").toggleClass("active",false);
+            $(".dropdown.active").on("hide.bs.dropdown", function (e) {
+                $(".dropdown").toggleClass("active", false);
                 return true;
             });
         });
@@ -61,7 +61,8 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" data-hover="dropdown">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav"
+                    data-hover="dropdown">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>main
@@ -119,8 +120,11 @@
                         <td>${foodTypeItem.foodID}</td>
                         <td>${foodTypeItem.foodName}</td>
                         <td>${foodTypeItem.price}</td>
-                        <td><div class=""><img src="../File?filename=${foodTypeItem.pictureURL}" style="width:60%" class="img-rounded img-responsive"></div></td>
-                        <%--<td>${foodTypeItem.pictureURL}</td>--%>
+                        <td>
+                            <div class=""><img src="../File?filename=${foodTypeItem.pictureURL}" style="width:60%"
+                                               class="img-rounded img-responsive"></div>
+                        </td>
+                            <%--<td>${foodTypeItem.pictureURL}</td>--%>
                         <td>
                             <c:forEach items="${statusEntityList}" var="statusItem">
                                 <c:choose>
@@ -133,6 +137,10 @@
                             </c:forEach>
                         </td>
                         <td>
+                            <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary"
+                                    autocomplete="off">
+                                add to car
+                            </button>
                             <a href="../UpdataFoodServlet?foodId=${foodTypeItem.foodID}&price=${foodTypeItem.price}&update=false">update</a>&emsp;
                             <a href="../DeleteFoodSerlvet?foodId=${foodTypeItem.foodID}"
                                onclick="return confirm('Delete this item?')">delete</a>
