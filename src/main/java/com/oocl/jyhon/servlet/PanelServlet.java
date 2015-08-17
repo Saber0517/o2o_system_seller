@@ -20,7 +20,7 @@ import java.util.List;
  * ???????servlet
  * Created by ZHANGJA4 on 8/7/2015.
  */
-@WebServlet(name = "PanelServlet", urlPatterns = {"/PanelServlet", "/index.jsp"})
+@WebServlet(name = "PanelServlet", urlPatterns = {"/PanelServlet", "/index.html"})
 public class PanelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //foodType
@@ -32,8 +32,8 @@ public class PanelServlet extends HttpServlet {
         EntityDao statusEntityDaoImple = new StatusEntityDaoImple();
         List<StatusEntity> statusEntityList = statusEntityDaoImple.findAll();
         request.getSession().setAttribute("statusEntityList", statusEntityList);
-        response.sendRedirect("main/index.jsp");
-        // request.getRequestDispatcher("main/index.jsp").forward(request, response);
+        response.sendRedirect("main/index.html");
+        // request.getRequestDispatcher("main/index.html").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

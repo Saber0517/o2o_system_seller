@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by ZHANGJA4 on 8/14/2015.
+ * Created by WhiteSaber on 15/8/14.
  */
-@WebServlet(name = "StatusServlet", urlPatterns = {"/StatusServlet"})
+@WebServlet(name = "StatusServlet",urlPatterns = {"/StatusServlet"})
 public class StatusServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<StatusEntity> statusEntityList = (List<StatusEntity>) request.getSession().getAttribute("statusEntityList");
-        if(null==statusEntityList){
-            //status
+
+        if (null == statusEntityList) {
             EntityDao statusEntityDaoImple = new StatusEntityDaoImple();
             statusEntityList = statusEntityDaoImple.findAll();
             request.getSession().setAttribute("statusEntityList", statusEntityList);
@@ -31,12 +31,14 @@ public class StatusServlet extends HttpServlet {
         JsonObject jsonObject = new JsonObject();
         //??json??
         response.setContentType("application/json");
-        String statusEntityJsonObject = gson.toJson(statusEntityList);
-        jsonObject.addProperty("statusMap", statusEntityJsonObject);
+        String statusTypeJsonObject = gson.toJson(statusEntityList);
+        jsonObject.addProperty("statusMap", statusTypeJsonObject);
         response.getOutputStream().write(gson.toJson(jsonObject, JsonObject.class).getBytes());
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        doPost(request,response);
     }
 }

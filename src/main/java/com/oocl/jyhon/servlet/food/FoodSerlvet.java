@@ -1,5 +1,7 @@
 package com.oocl.jyhon.servlet.food;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oocl.jyhon.dao.EntityDao;
 import com.oocl.jyhon.daoimple.FoodTypeEntityDaoImple;
 import com.oocl.jyhon.entiy.FoodEntity;
@@ -27,7 +29,7 @@ public class FoodSerlvet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //food
         String typeID = request.getParameter("typeID");
-
+        String json = request.getParameter("json");
         List<FoodEntity> foodEntityList = Collections.emptyList();
         foodEntityList = getFoodEntities(typeID);
         //Set current TypeName
@@ -36,11 +38,10 @@ public class FoodSerlvet extends HttpServlet {
         SetResultToSession(request, foodEntityList);
         //foward
         if (null != typeID) {
-            request.setAttribute("currentFoodTypeId", typeID);
+            request.getSession().setAttribute("currentFoodTypeId", typeID);
         }
-
-        request.getRequestDispatcher("main/Food.jsp").forward(request, response);
-        return;
+        response.sendRedirect("main/Food.jsp");
+//        request.getRequestDispatcher("main/Food.jsp").forward(request, response);
 
     }
 
@@ -70,7 +71,7 @@ public class FoodSerlvet extends HttpServlet {
         List<FoodEntity> resultList = new LinkedList<FoodEntity>();
         String requestUrl = request.getRequestURI();
         resultList = foodEntityList;
-        request.setAttribute("resultList", resultList);
+        request.getSession().setAttribute("resultList", resultList);
         System.out.println(requestUrl);
     }
 
